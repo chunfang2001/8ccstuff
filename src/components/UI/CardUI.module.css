@@ -1,0 +1,24 @@
+.UI{
+    width: 60%;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:20px;
+}
+
+@media only screen and (max-width: 1600px){
+    .UI{
+        width: 75%;
+    }
+}
+
+@media only screen and (max-width: 1200px){
+    .UI{
+        width: 85%;
+    }
+}
+
+@media only screen and (max-width: 800px){
+    .UI{
+        width: 85%;
+    }
+}

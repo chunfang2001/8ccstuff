@@ -1,0 +1,40 @@
+.card{
+    overflow: hidden;
+    color: black;
+    font-size: 30px;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px rgb(0, 0, 0);
+    max-width: 150px;
+    cursor: pointer;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+.flip{
+    transform: rotateY(180deg);
+    background:url('../components/static/front.jpg');
+    background-size: 150px 200px;
+}
+
+.show{
+    display: none;
+}
+.con{
+    transition: 0.6s;
+    transform: rotateY(180deg);
+    overflow-wrap: anywhere;
+}
+
+.cover{
+    background: url('../components/static/yugioh.png');
+    background-size: 150px 200px;
+}
+
+.text{
+    color: white;
+}

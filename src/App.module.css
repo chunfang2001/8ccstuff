@@ -1,0 +1,6 @@
+.design{
+    position: fixed;
+    top:0;
+    opacity: 30%;
+    z-index:-1;
+}
