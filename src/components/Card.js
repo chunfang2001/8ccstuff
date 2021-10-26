@@ -1,11 +1,15 @@
 import classes from './Card.module.css'
-import { useState } from  'react'
+import { useEffect, useState } from  'react'
 
 const Card = (props)=>{
-    const [click,setClick] = useState(false)
+    const [click,setClick] = useState(props.clicked)
     const clickHandler = ()=>{
         setClick(prev=>!prev)
     }
+    useEffect(()=>{
+        localStorage.setItem(props.name,click)
+    },[click,props.name])
+
     let c = `${classes['card']} ${classes['cover']}`
     if(click){
         c = `${classes['card']} ${classes['flip']} `

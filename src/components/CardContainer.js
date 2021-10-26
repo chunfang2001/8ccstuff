@@ -8,7 +8,6 @@ const CardContainer = ()=>{
     const nameForm = useRef()
     const [person,setPerson] = useState([])
     const [count,setCount] = useState(1)
-    console.log(person)
     const addPersonHandler = ()=>{
         if(nameForm.current.value.trim()===''){
             return
@@ -56,7 +55,13 @@ const CardContainer = ()=>{
             </div>
         </div>
         <div className={classes['cardcontainer']}>
-            {person.map((obj)=><Card name={obj.count} content={obj['名字（中）']} key={obj.count}></Card>)}
+            {person.map((obj)=>{
+                let clicked = false
+                if(localStorage.getItem(obj.count)==='true'){
+                    clicked = true
+                }
+                return <Card name={obj.count} content={obj['名字（中）']} key={obj.count} clicked={clicked}></Card>
+            })}
         </div>
     </>
 }
