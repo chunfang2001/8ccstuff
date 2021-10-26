@@ -6,6 +6,7 @@ import csvfile from './static/form.csv'
 
 const CardContainer = ()=>{
     const nameForm = useRef()
+    const [clear, setClear] = useState(false)
     const [person,setPerson] = useState([])
     const [count,setCount] = useState(1)
     const addPersonHandler = ()=>{
@@ -16,10 +17,22 @@ const CardContainer = ()=>{
                 count :count,
                 '名字（中）':nameForm.current.value
             }])
+            localStorage.setItem(count,false)
             setCount(prev=>prev+1)
         }
         nameForm.current.value=''
     }
+
+    const clearHandler = ()=>{
+        setClear(true)
+    }
+
+    useEffect(()=>{
+        if(clear){
+            setClear(false)
+        }
+    },[clear])
+
     useEffect(()=>{
         const sendRequest = async ()=>{
             let temp = []
@@ -40,7 +53,6 @@ const CardContainer = ()=>{
             })
             setCount(countNum)
             setPerson(temp)
-            
         }
         sendRequest()
     },[])
@@ -60,8 +72,11 @@ const CardContainer = ()=>{
                 if(localStorage.getItem(obj.count)==='true'){
                     clicked = true
                 }
-                return <Card name={obj.count} content={obj['名字（中）']} key={obj.count} clicked={clicked}></Card>
+                return <Card name={obj.count} content={obj['名字（中）']} key={obj.count} clicked={clicked} clear={clear}></Card>
             })}
+        </div>
+        <div className={classes['clearbutton']}>
+            <button className={classes['clear']} onClick={clearHandler}>Clear all</button>
         </div>
     </>
 }

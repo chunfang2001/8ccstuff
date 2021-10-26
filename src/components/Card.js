@@ -10,6 +10,12 @@ const Card = (props)=>{
         localStorage.setItem(props.name,click)
     },[click,props.name])
 
+    useEffect(()=>{
+        if(props.clear){
+            setClick(false)
+        }
+    },[props.clear])
+
     let c = `${classes['card']} ${classes['cover']}`
     if(click){
         c = `${classes['card']} ${classes['flip']} `
