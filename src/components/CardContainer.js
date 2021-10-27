@@ -3,9 +3,12 @@ import Card from './Card'
 import {csv} from 'd3'
 import { useEffect,useRef,useState } from 'react'
 import csvfile from './static/form.csv'
+import useSound from 'use-sound';
+import flipsound from './static/cardflip.mp3'
 
 const CardContainer = ()=>{
     const nameForm = useRef()
+    const [play] = useSound(flipsound)
     const [clear, setClear] = useState(false)
     const [person,setPerson] = useState([])
     const [count,setCount] = useState(1)
@@ -25,6 +28,7 @@ const CardContainer = ()=>{
 
     const clearHandler = ()=>{
         setClear(true)
+        play()
     }
 
     useEffect(()=>{
@@ -60,10 +64,9 @@ const CardContainer = ()=>{
         <div className={classes['inputContainer']}>
             <div className={classes['inputSide']}>
                 <div className={classes['formContainer']}>
-                    <div>+</div>
                     <input type="text" className={classes['input']} ref={nameForm}/>
                 </div>
-                <button className={classes['inputBtn']} onClick={addPersonHandler}>confirm</button>
+                <button className={classes['inputBtn']} onClick={addPersonHandler}>Add new</button>
             </div>
         </div>
         <div className={classes['cardcontainer']}>
