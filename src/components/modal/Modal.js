@@ -2,6 +2,10 @@ import ReactDOM from 'react-dom';
 import classes from './Modal.module.css'
 import roger from '../static/roger.jpg'
 import ability from '../static/ability.png'
+import { useEffect,useState } from 'react';
+import useSound from 'use-sound';
+import rogervip from '../static/rogervip.mp3'
+import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 
 const ModalBackground = ()=>{
     return <div className={classes['background']}></div>
@@ -10,10 +14,28 @@ const Ability =()=>{
     return <img src={ability} alt="" className={classes['ability']}/>
 }
 const ModalContent = (props)=>{
-    return <>
+    const [click,setClick] = useState(false)
+    const [clicked,setClicked] = useState(false)
+    const [vipsound,{ stop }] = useSound(rogervip,{interrupt:true})
+
+    const soundHandler = ()=>{
+        setClicked(true)
+    }
+    useEffect(()=>{
+        if(clicked){
+            vipsound()
+            setTimeout(()=>setClick(true),10000)
+        }
+    },[clicked,vipsound])
+
+    const stopSoundHandler = ()=>{
+        stop()
+        props.onProceed()
+    }
     
+    return <>
     <div className={classes['content']}>
-        <h2>Roger GIEGIE</h2>
+        <h2 >Roger GIEGIE</h2>
         <div className={classes['roger-info']}>
             <img src={roger} alt="roger" className={classes['roger']}/>
             <div>
@@ -40,7 +62,8 @@ const ModalContent = (props)=>{
                 <Ability/>
             </div>
         </div>
-        <button className={classes['button']} onClick={props.onProceed}>Proceed to Main Page</button>
+        {!click&&<button className={classes['button']} onClick={soundHandler}>Sound On<VolumeUpIcon className={classes['voiceicon']}/></button>}
+        {click&&<button className={classes['button']} onClick={stopSoundHandler}>Proceed to Main Page</button>}
     </div>
     </>
 }

@@ -2,10 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import ContextPro from './context/ContextPro';
 
 
 ReactDOM.render(
-    <App />,
+  <ContextPro>
+    <App />
+  </ContextPro>,
   document.getElementById('root')
 );
 

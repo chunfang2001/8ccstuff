@@ -25,6 +25,8 @@
     display: none;
 }
 .con{
+    margin-left: 20px;
+    margin-right: 25px;
     font-family: 'ZCOOL XiaoWei', serif;
     transition: 0.6s;
     transform: rotateY(180deg);

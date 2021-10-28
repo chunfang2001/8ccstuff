@@ -1,15 +1,30 @@
 import classes from './Card.module.css'
-import { useEffect, useState } from  'react'
+import { useEffect, useState, useContext } from  'react'
 import useSound from 'use-sound';
 import flipsound from './static/cardflip.mp3'
+import winsound from './static/win.wav'
+import { Context } from '../context/ContextPro'
 
 const Card = (props)=>{
     const [click,setClick] = useState(props.clicked)
+    const ctx = useContext(Context)
     const [play] = useSound(flipsound)
+    const [play2,{ stop }] = useSound(winsound)
 
     const clickHandler = ()=>{
+        if(!click){
+            if(props.win){
+                stop()
+                play2()
+                ctx.showRoger()
+            }else{
+                play()
+            }
+        }else{
+            play()
+        }        
         setClick(prev=>!prev)
-        play()
+        
     }
     useEffect(()=>{
         localStorage.setItem(props.name,click)

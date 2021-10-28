@@ -6,6 +6,8 @@ import csvfile from './static/form.csv'
 import useSound from 'use-sound';
 import flipsound from './static/cardflip.mp3'
 
+const prize = [4,33,49]
+
 const CardContainer = ()=>{
     const nameForm = useRef()
     const [play] = useSound(flipsound)
@@ -47,13 +49,38 @@ const CardContainer = ()=>{
                 return obj.Timestamp !== ''
             })
             let countNum =1
+            const arr = prize.map((num)=>{
+                const obj = {
+                    count : num,
+                    'Timestamp' : '',
+                    '名字（中）' :'恭喜中奖了!!!',
+                    win:true
+                }
+                return obj
+            })
             temp = temp.map((obj)=>{
+                prize.map((num)=>{
+                    if(countNum===num){
+                        countNum++;
+                    }
+                    return ''
+                })
                 const newObj = {
                     count : countNum,
+                    win:false,
                     ...obj
                 }
                 countNum++
                 return newObj
+            })
+            temp = temp.concat(arr)
+            temp = temp.sort((a,b)=>{
+                if(a.count>b.count){
+                    return 1
+                }else if(a.count<b.count){
+                    return -1
+                }
+                return 0
             })
             setCount(countNum)
             setPerson(temp)
@@ -75,7 +102,7 @@ const CardContainer = ()=>{
                 if(localStorage.getItem(obj.count)==='true'){
                     clicked = true
                 }
-                return <Card name={obj.count} content={obj['名字（中）']} key={obj.count} clicked={clicked} clear={clear}></Card>
+                return <Card name={obj.count} content={obj['名字（中）']} key={obj.count} clicked={clicked} clear={clear} win={obj.win}></Card>
             })}
         </div>
         <div className={classes['clearbutton']}>

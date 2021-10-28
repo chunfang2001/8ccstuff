@@ -3,15 +3,20 @@ import Header from "./components/Header";
 import CardUI from "./components/UI/CardUI";
 import classes from './App.module.css';
 import Modal from "./components/modal/Modal";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { Context } from './context/ContextPro'
+import PrizeModal from "./components/modal/PrizeModal";
 
 function App() {
   const [intro,setIntro] = useState(false)
+  const ctx = useContext(Context)
   const proceedHandler =()=>{
     setIntro(true)
   }
+  console.log(ctx.show)
   return (
     <div >
+      {ctx.show&&<PrizeModal onProceed={proceedHandler}/>}
       {!intro&&<Modal onProceed={proceedHandler}/>}
       <Header/>
       <CardUI>
