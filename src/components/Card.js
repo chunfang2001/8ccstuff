@@ -16,11 +16,13 @@ const Card = (props)=>{
             if(props.win){
                 stop()
                 play2()
-                ctx.showRoger()
+                ctx.showRoger(true)
             }else{
+                ctx.showRoger(false)
                 play()
             }
         }else{
+            ctx.showRoger(false)
             play()
         }        
         setClick(prev=>!prev)

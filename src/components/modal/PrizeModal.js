@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom';
 import classes from './PrizeModal.module.css'
 import roger from '../static/rogerPrize.jpeg'
 import ability from '../static/ability.png'
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Context } from '../../context/ContextPro';
 
 const ModalBackground = ()=>{
@@ -16,6 +16,7 @@ const ModalContent = ()=>{
     const closeRogerHandler = ()=>{
         ctx.showRoger()
     }
+
     return <>
     <div className={classes['content']}>
         <h2 >Roger GIEGIE</h2>

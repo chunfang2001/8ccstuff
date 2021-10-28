@@ -3,14 +3,14 @@ import React from "react"
 
 export const Context = React.createContext({
     show : false,
-    showRoger:()=>{}
+    showRoger:(a)=>{}
 })
 
 const ContextPro = (props)=>{
     const [show, setShow] = useState(false)
-    const showRogerHandler = ()=>{
+    const showRogerHandler = (a)=>{
         console.log("trigger")
-        setShow(prev=>!prev)
+        setShow(a)
     }
     const context = {
         show: show,
