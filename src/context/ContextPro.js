@@ -8,9 +8,11 @@ export const Context = React.createContext({
 
 const ContextPro = (props)=>{
     const [show, setShow] = useState(false)
+    let timer
     const showRogerHandler = (a)=>{
-        console.log("trigger")
+        clearTimeout(timer)
         setShow(a)
+        timer = setTimeout(()=>{setShow(false)},10000)
     }
     const context = {
         show: show,

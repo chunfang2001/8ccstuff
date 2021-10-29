@@ -27,7 +27,8 @@ function App() {
   console.log(ctx.show)
   return (
     <div >
-      {ctx.show&&<Fireworks {...fxProps} />}
+      {ctx.show&&<div className={classes['firework']}><Fireworks {...fxProps} /></div>}
+      {ctx.show&&<div className={classes['congrats']}>恭喜中奖啦!!</div>}
       {/* {ctx.show&&<PrizeModal onProceed={proceedHandler}/>} */}
       {/* {!intro&&<Modal onProceed={proceedHandler}/>} */}
       <Header/>
