@@ -2,7 +2,7 @@ import classes from './Card.module.css'
 import { useEffect, useState, useContext } from  'react'
 import useSound from 'use-sound';
 import flipsound from './static/cardflip.mp3'
-import winsound from './static/win.wav'
+import winsound from './static/rogervip.mp3'
 import { Context } from '../context/ContextPro'
 
 const Card = (props)=>{
@@ -32,6 +32,11 @@ const Card = (props)=>{
         localStorage.setItem(props.name,click)
     },[click,props.name])
 
+    useEffect(()=>{
+        if(!ctx.show){
+            stop()
+        }
+    },[ctx.show])
     useEffect(()=>{
         if(props.clear){
             setClick(false)

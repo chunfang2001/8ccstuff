@@ -9,6 +9,7 @@ import PrizeModal from "./components/modal/PrizeModal";
 import { Fireworks } from 'fireworks/lib/react'
 
 function App() {
+  const ctx = useContext(Context)
   let fxProps = {
     count: 3,
     interval: 200,
@@ -19,16 +20,18 @@ function App() {
       y: 200 + Math.random() * 100 - 50 + (i === 2 ? -80 : 0)
     })
   }
+
+  const closeModalHandler = ()=>{
+    ctx.showRoger(false)
+  }
   const [intro,setIntro] = useState(false)
-  const ctx = useContext(Context)
   const proceedHandler =()=>{
     setIntro(true)
   }
-  console.log(ctx.show)
   return (
     <div >
-      {ctx.show&&<div className={classes['firework']}><Fireworks {...fxProps} /></div>}
-      {ctx.show&&<div className={classes['congrats']}>恭喜中奖啦!!</div>}
+      {ctx.show&&<div className={classes['firework']} onClick={closeModalHandler}><Fireworks {...fxProps} /></div>}
+      {ctx.show&&<div className={classes['congrats']} onClick={closeModalHandler}>恭喜中奖啦!!</div>}
       {/* {ctx.show&&<PrizeModal onProceed={proceedHandler}/>} */}
       {/* {!intro&&<Modal onProceed={proceedHandler}/>} */}
       <Header/>

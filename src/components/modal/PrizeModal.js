@@ -13,13 +13,10 @@ const Ability =()=>{
 }
 const ModalContent = ()=>{
     const ctx = useContext(Context)
-    const closeRogerHandler = ()=>{
-        ctx.showRoger()
-    }
 
     return <>
     <div className={classes['content']}>
-        <h2 >Roger GIEGIE</h2>
+        <h2 >8CC Head</h2>
         <div className={classes['roger-info']}>
             <img src={roger} alt="roger" className={classes['roger']}/>
             <div className={classes['roger-prize']}>
@@ -27,7 +24,6 @@ const ModalContent = ()=>{
                 <Ability/>
             </div>
         </div>
-        <div className={classes['button']} onClick={closeRogerHandler}>CLOSE</div>
     </div>
     </>
 }

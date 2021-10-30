@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import React from "react"
 
 export const Context = React.createContext({
@@ -8,12 +8,19 @@ export const Context = React.createContext({
 
 const ContextPro = (props)=>{
     const [show, setShow] = useState(false)
-    let timer
     const showRogerHandler = (a)=>{
-        clearTimeout(timer)
         setShow(a)
-        timer = setTimeout(()=>{setShow(false)},10000)
     }
+
+    useEffect(()=>{
+        let timer
+        if(show === true){
+            timer = setTimeout(()=>{setShow(false)},30000)
+        }
+        return ()=>{
+            clearTimeout(timer)
+        }
+    },[show])
     const context = {
         show: show,
         showRoger : showRogerHandler
